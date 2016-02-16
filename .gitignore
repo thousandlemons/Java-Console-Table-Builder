@@ -1,6 +1,7 @@
 # Intellij
 .idea/
 *.iml
+*.eml
 *.iws
 
 # Mac
