@@ -1,5 +1,6 @@
-# Console Table Builder
-##Introduction
+#### *Download the package [`ConsoleTableBuilder-1.0.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/ConsoleTableBuilder-1.0.jar?raw=truee) to use this library.* 
+
+## Introduction
 This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
 The core features are:
 <ul>
@@ -9,15 +10,15 @@ The core features are:
   <li>Built-in <b>alignment</b> formats for each column as LEFT, CENTER or RIGHT.</li>
   <li>Built-in <b>precision</b> formats for numbers</li>
 </ul>
-##User Guide
-###Alignment
+## User Guide
+### Alignment
 There are three alignment types availabe in the enum `Alignment`,
 
 * ```Alignment.LEFT```
 * ```Alignment.CENTER```
 * ```Alignment.RIGHT```
 
-###Instant `Table` from `String[][]`
+### Instant `Table` from `String[][]`
 If you already have a ```String[][] data```, you can print it into the console as a formatted table instantly with a specifed ```Alignment``` and a ```width``` for all the columns in this table. Here we go, 
 
 ```java
@@ -25,10 +26,10 @@ Table table = Table.of(data, Alignment.LEFT, 10); //10-character wide for each c
 System.out.println(table); //NOTICE: table.toString() is called implicitly
 ```
 
-###Precision
+### Precision
 There are built-in precision formats from ```Precision.ZERO``` to ```Precision.NINE```. Each ```Number``` applied to will be rounded up to the specified precision. For example, applying ```Precision.TWO``` to the constant ```Math.PI``` will get ```3.14``` as a result.
 
-###ColumnFormatter
+### ColumnFormatter
 ```ColumnFormatter<T>``` specifies how all the cells in a certain column should be formatted. It is an abstract class that is designed to be subclassed. 
 
 A concrete implementation of a subclass has at least two fields, ```alignment``` and ```width```. It also must have a ```String format(T t)``` method, which can read in a certain object of type ```T``` and output a formatted string, so that this string can be further printed as a cell in the column.
@@ -71,7 +72,7 @@ $457.20
 
 *<b>For the more details about other built-in ```ColumnFormatter``` implementations, including ```dateTime```, ```percentage```, etc., please refer to the javadoc.</b>*
 
-###Quickly Build a `Table` from `T[][]`
+### Quickly Build a `Table` from `T[][]`
 
 
 The following example shows how to print a ```Double[][] data``` (table contents) together with a ```String[] headers``` (table headers), in the console as a table, and all the columns have exactly the same format - aligned to the right,  8-char wide, and with 3-digit precision.
@@ -88,7 +89,7 @@ Table table = Table.of(data, cf);
 ```
 Such a table will not have headers in the first row.
 
-###Build a `Table` Column By Column
+### Build a `Table` Column By Column
 If you want each column in your table to be formatted in different fashion, this is your solution. 
 
 Suppose that now we have a ```String[] names``` for the first column, ```Integer[] ages``` for the second, and ```Double[] rates``` (in percentage format) for the third, to build a table column by column, simply write the followings:
