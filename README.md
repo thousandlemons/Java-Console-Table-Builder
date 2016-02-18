@@ -6,14 +6,14 @@
 <dependency>
   <groupId>io.bretty</groupId>
   <artifactId>console-table-builder</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
 </dependency>
 ```
 
 ### Downloads
 
-* Download package [`console-table-builder-1.1.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/console-table-builder-1.1.jar?raw=true)
-* Download package, source and javadoc from: [Artifect Directory on Maven Central Repository](https://repo1.maven.org/maven2/io/bretty/console-table-builder/1.1/)
+* Download package [`console-table-builder-1.2.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/console-table-builder-1.2.jar?raw=true)
+* Download package, source and javadoc from: [Artifect Directory on Maven Central Repository](https://repo1.maven.org/maven2/io/bretty/console-table-builder/1.2/)
 
 ## Introduction
 This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
