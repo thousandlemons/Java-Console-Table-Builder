@@ -23,7 +23,7 @@ public abstract class ColumnFormatter<T> {
 	 * @param al See enum Alignment
 	 * @param width An integer as the width of the column
 	 * @param p See enum Precision
-	 * @param symbol A string as the currency symbol. 
+	 * @param symbol A string as the currency symbol.
 	 * If the symbol length is greater than 1, there will be a space between the symbol and the number.
 	 * @return A ColumnFormatter object
 	 */
@@ -37,7 +37,7 @@ public abstract class ColumnFormatter<T> {
 	 * @param al See enum Alignment
 	 * @param width An integer as the width of the column
 	 * @param df See java.text.DateFormat
-	 * @return A ColumnFormatter object
+	 * @return A ColumnFormatter for datetime objects
 	 */
 	public static ColumnFormatter<Date> dateTime(Alignment al, int width,
 			DateFormat df) {
@@ -48,6 +48,7 @@ public abstract class ColumnFormatter<T> {
 	 * Format a string using the Alignment and width of an existing ColumnFormatter for any type
 	 * @param cf An existing ColumnFormatter of any type
 	 * @param s The input String to be formatted
+	 * @param <T> the class of the objects in the column
 	 * @return The result String
 	 */
 	public static <T> String formatText(ColumnFormatter<T> cf, String s){
@@ -61,7 +62,7 @@ public abstract class ColumnFormatter<T> {
 	 * @param al See enum Alignment
 	 * @param width An integer as the width of the column
 	 * @param p See enum Precision
-	 * @return A ColumnFormatter object
+	 * @return A ColumnFormatter for Number objects
 	 */
 	public static ColumnFormatter<Number> number(Alignment al, int width, Precision p) {
 		return new NumberColumnFormatter(al, width, p);
@@ -72,7 +73,7 @@ public abstract class ColumnFormatter<T> {
 	 * @param al See enum Alignment
 	 * @param width An integer as the width of the column
 	 * @param p See enum Precision
-	 * @return a ColumnFormatter<Number> object
+	 * @return a ColumnFormatter for percentage numbers
 	 */
 	public static ColumnFormatter<Number> percentage(Alignment al, int width,
 			Precision p) {
@@ -83,16 +84,17 @@ public abstract class ColumnFormatter<T> {
 	 * Get a built-in ColumnFormatter for plain texts
 	 * @param al See enum Alignment
 	 * @param width An integer as the width of the column
-	 * @return a ColumnFormatter object
+	 * @return a ColumnFormatter for String objects
 	 */
 	public static ColumnFormatter<String> text(Alignment al, int width) {
 		return new TextColumnFormatter(al, width);
 	}
 	
 	/**
-	 * Get a ColumnFormatter<String> object using the Alignment and width of an existing ColumnFormatter of any type
+	 * Get a ColumnFormatter object using the Alignment and width of an existing ColumnFormatter of any type
 	 * @param cf An existing ColumnFormatter
-	 * @return a ColumnFormatter object
+	 * @param <T> the class of the column objects
+	 * @return a ColumnFormatter for String objects
 	 */
 	public static <T> ColumnFormatter<String> text(ColumnFormatter<T> cf){
 		return new TextColumnFormatter(cf.al, cf.width);

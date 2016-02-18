@@ -70,13 +70,34 @@ public final class Table {
 		}
 		
 	}
-	
+
+    /**
+     * Quickly build a table
+     * @param data A 2D Object array as the content of the table
+     * @param al See enum {@link io.bretty.console.table.Alignment Alignment}
+     * @param width An integer as the width of each column in the table
+     * @return a Table object
+     */
+    public static Table of(Object[][] data, Alignment al, int width){
+        TextColumnFormatter tf = new TextColumnFormatter(al, width);
+        Table t = new Table();
+        t.table = new String[data.length][data[0].length];
+        for(int i = 0; i < data.length; ++i){
+            for(int j = 0; j < data[0].length; ++j){
+                t.table[i][j] = tf.format(data[i][j].toString());
+            }
+        }
+        t.charCount = data.length * (data[0].length * (width + 1)) + 2;
+        return t;
+    }
+
+
 	/**
 	 * Quickly build a table from given data
 	 * @param headers A String array as the headers for the entire table
 	 * @param data A 2D array of objects of Type T
 	 * @param f A single formatter of Type T for all the columns in the table
-	 * @return
+	 * @return a Table object
 	 */
 	public static <T> Table of(String[] headers, T[][] data, ColumnFormatter<T> f){
 		if (data.length == 0 || data[0].length != headers.length);
@@ -97,29 +118,9 @@ public final class Table {
 
 	/**
 	 * Quickly build a table
-	 * @param data A 2D String array as the content of the table
-	 * @param al See enum Alignment
-	 * @param width An integer as the width of each column in the table
-	 * @return
-	 */
-	public static Table of(String[][] data, Alignment al, int width){
-		TextColumnFormatter tf = new TextColumnFormatter(al, width);
-		Table t = new Table();
-		t.table = new String[data.length][data[0].length];
-		for(int i = 0; i < data.length; ++i){
-			for(int j = 0; j < data[0].length; ++j){
-				t.table[i][j] = tf.format(data[i][j]);
-			}
-		}
-		t.charCount = data.length * (data[0].length * (width + 1)) + 2;
-		return t;
-	}
-	
-	/**
-	 * Quickly build a table
 	 * @param data A 2D array of Type T as the content of the table
 	 * @param f A single formatter of Type T for all the columns in this table
-	 * @return
+	 * @return a Table object
 	 */
 	public static <T> Table of(T[][] data, ColumnFormatter<T> f){
 		Table t = new Table();

@@ -1,4 +1,19 @@
-#### *Download the package [`ConsoleTableBuilder-1.0.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/ConsoleTableBuilder-1.0.jar?raw=truee) to use this library.* 
+## Installation
+
+### Maven
+
+```xml
+<dependency>
+  <groupId>io.bretty</groupId>
+  <artifactId>console-table-builder</artifactId>
+  <version>1.1</version>
+</dependency>
+```
+
+### Downloads
+
+* Download package [`console-table-builder-1.1.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/console-table-builder-1.1.jar?raw=true)
+* Download package, source and javadoc from: [Artifect Directory on Maven Central Repository](https://repo1.maven.org/maven2/io/bretty/console-table-builder/1.1/)
 
 ## Introduction
 This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
@@ -18,8 +33,8 @@ There are three alignment types availabe in the enum `Alignment`,
 * ```Alignment.CENTER```
 * ```Alignment.RIGHT```
 
-### Instant `Table` from `String[][]`
-If you already have a ```String[][] data```, you can print it into the console as a formatted table instantly with a specifed ```Alignment``` and a ```width``` for all the columns in this table. Here we go, 
+### Instant `Table` from `Object[][]`
+If you already have a ```Object[][] data```, you can print it into the console as a formatted table instantly with a specifed ```Alignment``` and a ```width``` for all the columns in this table. Here we go, 
 
 ```java
 Table table = Table.of(data, Alignment.LEFT, 10); //10-character wide for each column
