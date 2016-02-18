@@ -43,7 +43,7 @@ Table table = Table.of(data, Alignment.LEFT, 10); // 10-character wide for each 
 System.out.println(table); // NOTICE: table.toString() is called implicitly
 ```
 
-## More Table Format
+## More on Table Formats
 
 ### Precision
 
