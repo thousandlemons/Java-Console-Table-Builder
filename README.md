@@ -25,29 +25,36 @@ The core features are:
   <li>Built-in <b>alignment</b> formats for each column as LEFT, CENTER or RIGHT.</li>
   <li>Built-in <b>precision</b> formats for numbers</li>
 </ul>
-## User Guide
+
+## Quick Start
+
 ### Alignment
 There are three alignment types availabe in the enum `Alignment`,
 
-* ```Alignment.LEFT```
-* ```Alignment.CENTER```
-* ```Alignment.RIGHT```
+* ```LEFT```
+* ```CENTER```
+* ```RIGHT```
 
-### Instant `Table` from `Object[][]`
-If you already have a ```Object[][] data```, you can print it into the console as a formatted table instantly with a specifed ```Alignment``` and a ```width``` for all the columns in this table. Here we go, 
+### Convert `Object[][]` to Stylish `Table`
+If you already have a ```Object[][] data```, you can print it into the console as a formatted table instantly with a specifed ```Alignment``` and a ```width``` for **ALL** columns in this table:
 
 ```java
-Table table = Table.of(data, Alignment.LEFT, 10); //10-character wide for each column
-System.out.println(table); //NOTICE: table.toString() is called implicitly
+Table table = Table.of(data, Alignment.LEFT, 10); // 10-character wide for each column
+System.out.println(table); // NOTICE: table.toString() is called implicitly
 ```
 
+## More Table Format
+
 ### Precision
-There are built-in precision formats from ```Precision.ZERO``` to ```Precision.NINE```. Each ```Number``` applied to will be rounded up to the specified precision. For example, applying ```Precision.TWO``` to the constant ```Math.PI``` will get ```3.14``` as a result.
+
+The enum `Precision` comprises decimal number precision formats from ```ZERO``` to ```NINE```. 
+
+Each ```Number``` object processed by `Precision` will be rounded up to the specified precision. For example, applying ```Precision.TWO``` to the constant ```Math.PI``` will give us ```3.14``` as a result.
 
 ### ColumnFormatter
 ```ColumnFormatter<T>``` specifies how all the cells in a certain column should be formatted. It is an abstract class that is designed to be subclassed. 
 
-A concrete implementation of a subclass has at least two fields, ```alignment``` and ```width```. It also must have a ```String format(T t)``` method, which can read in a certain object of type ```T``` and output a formatted string, so that this string can be further printed as a cell in the column.
+A concrete implementation of a subclass has at least two fields, ```alignment``` and ```width```. A subclass also must implement a ```String format(T t)``` method, which can convert an object of type ```T``` to a string, which will be later used as a cell in the column.
 
 There are several existing implementation of this class. For example, to get a ```ColumnFormatter<Number>``` object to format numbers as
 
@@ -85,19 +92,38 @@ $457.20
  $37.50
 ```
 
-*<b>For the more details about other built-in ```ColumnFormatter``` implementations, including ```dateTime```, ```percentage```, etc., please refer to the javadoc.</b>*
+Here is a list of all built-in `ColumnFormatter` implementations:
 
-### Quickly Build a `Table` from `T[][]`
+| Column Type | Factory Method | 
+| ---| ---|
+| Currency | `ColumnFormatter.currency(...)` |
+| Number | `ColumnFormatter.number(...)` | 
+| Percentage | `ColumnFormatter.percentage(...)`|
+| Datetime | `ColumnFormatter.dateTime(...)`|
+| Text | `ColumnFormatter.text(...)`|
 
 
-The following example shows how to print a ```Double[][] data``` (table contents) together with a ```String[] headers``` (table headers), in the console as a table, and all the columns have exactly the same format - aligned to the right,  8-char wide, and with 3-digit precision.
+## Build Tables in Fully Customized Format
+
+### Convert `T[][]` to a Stylish `Table`
+
+The following example shows, with given
+
+*  ```Double[][] data```: table contents, and
+* ```String[] headers```: table headers, 
+
+how to print a table with the same format for each column:
+
+* Aligned to the right
+* 8-char wide
+* 3-digit precision after the decimal point
 
 ```java
 ColumnFormatter<Number> cf = ColumnFormatter.number(Alignment.RIGHT, 8, Precision.THREE);
 Table table = Table.of(headers, data, cf);
 System.out.println(table); //NOTICE: table.toString() is called implicitly
 ```
-In the case that your table doesn't need headers, the ```headers``` in the paramaters can be simply omitted.
+In the case that your table doesn't need headers, the ```headers``` in the paramaters can be simply omitted like this:
 
 ```java
 Table table = Table.of(data, cf);
@@ -105,27 +131,31 @@ Table table = Table.of(data, cf);
 Such a table will not have headers in the first row.
 
 ### Build a `Table` Column By Column
-If you want each column in your table to be formatted in different fashion, this is your solution. 
+If you want each column in your table to be formatted in a different fashion, this is your solution. 
 
-Suppose that now we have a ```String[] names``` for the first column, ```Integer[] ages``` for the second, and ```Double[] rates``` (in percentage format) for the third, to build a table column by column, simply write the followings:
+The following example shows how to print a stylish table with given
+
+* ```String[] names``` for the first column
+* ```Integer[] ages``` for the second,
+* ```Double[] rates``` (in percentage format) for the third
 
 ```java
-//define the formatter for each column
+// define a formatter for each column
 ColumnFormatter<String> nameFormatter = ColumnFormatter.text(Alignment.LEFT, 10);
 ColumnFormatter<Number> ageFormatter = ColumnFormatter.number(Alignment.RIGHT, 3, Precision.ZERO);
 ColumnFormatter<Number> rateFormatter = ColumnFormatter.percentage(Alignment.RIGHT, 6, Precision.ONE);
 
-//create a builder with the first column
-//"Name" serves as the header for this column
+// create a builder with the first column
+// "Name" serves as the header for this column
 Table.Builder builder = new Table.Builder("Name", names, nameFormatter);
 
-//add other columns
+// add other columns
 builder.addColumn("Age", ages, ageFormatter);
 builder.addColumn("Rate", rates, rateFormatter);
 
-//build the table and print it
+// build the table and print it
 Table table = builder.build();
-System.out.println(table); //NOTICE: table.toString() is called implicitly
+System.out.println(table); // NOTICE: table.toString() is called implicitly
 ```
 
 
