@@ -1,6 +1,28 @@
-## Installation
+# Java Console Table Builder: Quickly Build a Stylish Excel-like Table
 
-### Maven
+[![maven central](https://img.shields.io/badge/maven%20central-1.2-brightgreen.svg)](https://search.maven.org/#artifactdetails%7Cio.bretty%7Cconsole-table-builder%7C1.2%7Cjar)
+[![license](https://img.shields.io/hexpm/l/plug.svg)]([![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/nathanielove/Java-Console-Table-Builder/master/license.txt))
+
+This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
+The core features are:
+<ul>
+  <li><b>Quickly build</b> a table with uniform format for each column.</li>
+  <li>Build tables that have a <b>different format for each column</b>.</li>
+  <li>Built-in formatters including <b>numbers, percentages, currency, date, time</b>, etc.</li>
+  <li>Built-in <b>alignment</b> formats for each column as LEFT, CENTER or RIGHT.</li>
+  <li>Built-in <b>precision</b> formats for numbers</li>
+</ul>
+
+
+
+## Latest Release
+
+
+The most recent release is Console Tree Builder 1.2, released 18 Feb 2016.
+
+Version 1.2 API Docs: [Package io.bretty.console.table](https://www.javadoc.io/doc/io.bretty/console-table-builder/1.2)
+
+To add a dependency using Maven, use the following:
 
 ```xml
 <dependency>
@@ -10,21 +32,11 @@
 </dependency>
 ```
 
-### Downloads
+To add a dependency using Gradle:
 
-* Download package [`console-table-builder-1.2.jar`](https://github.com/nathanielove/Java-Console-Table-Builder/blob/master/console-table-builder-1.2.jar?raw=true)
-* Download package, source and javadoc from: [Artifect Directory on Maven Central Repository](https://repo1.maven.org/maven2/io/bretty/console-table-builder/1.2/)
-
-## Introduction
-This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
-The core features are:
-<ul>
-  <li><b>Quickly build</b> a table with uniform format for each column.</li>
-  <li>Build tables that have <b>different formats column by column</b>.</li>
-  <li>Built-in formatters including <b>numbers, percentages, currency, date, time</b>, etc.</li>
-  <li>Built-in <b>alignment</b> formats for each column as LEFT, CENTER or RIGHT.</li>
-  <li>Built-in <b>precision</b> formats for numbers</li>
-</ul>
+```groovy
+compile 'io.bretty:console-table-builder:1.2'
+```
 
 ## Quick Start
 
