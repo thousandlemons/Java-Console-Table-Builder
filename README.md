@@ -1,9 +1,9 @@
 # Java Console Table Builder: Quickly Build a Stylish Excel-like Table
 
 [![maven central](https://img.shields.io/badge/maven%20central-1.2-brightgreen.svg)](https://search.maven.org/#artifactdetails%7Cio.bretty%7Cconsole-table-builder%7C1.2%7Cjar)
-[![license](https://img.shields.io/hexpm/l/plug.svg)]([![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/nathanielove/Java-Console-Table-Builder/master/license.txt))
+[![license](https://img.shields.io/hexpm/l/plug.svg)]()
 
-This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single ```String``` with all formats preserved.<p>
+This library makes it easy to build stylish *<b>Excel-like tables</b>*, which can be printed into a single string with all formats preserved.<p>
 The core features are:
 <ul>
   <li><b>Quickly build</b> a table with uniform format for each column.</li>
